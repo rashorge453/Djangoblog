@@ -21,7 +21,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.contrib import admin
 from django.urls import path,include
 from .sitemaps import CategorySitemap, PostSitemap
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns # new
 from core.views import frontpage,about, robots_txt
 
 sitemaps = {'category': CategorySitemap, 'post': PostSitemap}
@@ -34,3 +34,4 @@ urlpatterns = [
     path('',frontpage,name='frontpage'),
     path('',include('journal.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns() # new
